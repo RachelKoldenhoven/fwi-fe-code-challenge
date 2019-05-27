@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'redux-first-routing';
 
 export class TableHeader extends Component {
   render() {
@@ -33,10 +34,10 @@ export class TableHeader extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAdd: () => console.log('onAdd called'),
+    onAdd: () => dispatch(push('/player/add')),
   };
 };
 export default connect(
   undefined,
-  mapDispatchToProps()
+  mapDispatchToProps
 )(TableHeader);

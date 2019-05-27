@@ -1,17 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import './index.scss';
 import App from './App';
 import rootReducer from './appState/index';
 import * as serviceWorker from './serviceWorker';
+import {
+  createBrowserHistory,
+  routerMiddleware as createRouterMiddleware,
+  startListener,
+} from 'redux-first-routing';
+
+// routing: https://github.com/mksarge/redux-first-routing
+const history = createBrowserHistory();
+const routerMiddleware = createRouterMiddleware(history);
+
+// composeEnhancers: https://chariotsolutions.com/blog/post/redux-middleware-and-enhancers-getting-redux-to-log-debug-and-process-async-work/
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   rootReducer,
   {},
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancers(applyMiddleware(routerMiddleware))
 );
+
+startListener(history, store);
 
 ReactDOM.render(
   <Provider store={store}>
