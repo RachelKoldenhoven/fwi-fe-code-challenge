@@ -34,7 +34,7 @@ export class TableHeader extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAdd: () => dispatch(push('/player/add')),
+    onAdd: () => dispatch(push('/players/add')),
   };
 };
 export default connect(
