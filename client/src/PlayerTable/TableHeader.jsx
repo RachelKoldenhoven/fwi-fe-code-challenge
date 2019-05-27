@@ -11,6 +11,7 @@ const TableHeader = () => (
         <th role="columnheader" className="table__header table__avatar" />
         <th role="columnheader" className="table__header table__player">
           Player
+          <button className="table__player__add">+</button>
         </th>
         <th role="columnheader" className="table__header table__winnings">
           Winnings
