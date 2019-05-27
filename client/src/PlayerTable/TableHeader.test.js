@@ -1,5 +1,15 @@
+import React from 'react';
+import { shallow } from 'enzyme';
+
+import TableHeader from './TableHeader';
+
 describe('TableHeader', () => {
   it('should have an Add Player button', () => {
-    expect(true).toBe(true);
+    // Setup
+    const thWrapper = shallow(<TableHeader />);
+
+    // Exercise
+
+    // Assert
   });
 });
