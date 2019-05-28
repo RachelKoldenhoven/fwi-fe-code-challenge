@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+
 import './index.scss';
 import App from './App';
 import rootReducer from './appState/index';
@@ -22,7 +24,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   rootReducer,
   {},
-  composeEnhancers(applyMiddleware(routerMiddleware))
+  composeEnhancers(applyMiddleware(routerMiddleware, thunk))
 );
 
 startListener(history, store);
