@@ -16,6 +16,7 @@ class PlayerEdit extends Component {
       name: '',
       country: '',
       winnings: 0,
+      id: '',
     };
   }
 
@@ -32,7 +33,7 @@ class PlayerEdit extends Component {
   }
 
   async componentDidMount() {
-    const request = await fetch(
+    const response = await fetch(
       `http://localhost:3001/players/${this.selectedId}`,
       {
         headers: {
@@ -40,8 +41,12 @@ class PlayerEdit extends Component {
         },
       }
     );
-    const player = await request.json();
-    this.setState(player);
+    if (response.status !== 200) {
+      this.setState({ id: undefined });
+    } else {
+      const player = await response.json();
+      this.setState(player);
+    }
   }
 
   get selectedId() {
@@ -66,6 +71,9 @@ class PlayerEdit extends Component {
   };
 
   render() {
+    if (this.state.id === undefined) {
+      return <div className="player-edit">Player not found</div>;
+    }
     return (
       <div className="player-edit">
         <h3>Edit this player</h3>
