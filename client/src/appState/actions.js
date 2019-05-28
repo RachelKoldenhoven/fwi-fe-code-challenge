@@ -47,6 +47,16 @@ export const updatePlayer = player => {
   };
 };
 
+export const deletePlayer = player => {
+  return async dispatch => {
+    await fetch(`http://localhost:3001/players/${player.id}`, {
+      method: 'DELETE',
+    });
+    dispatch(getPlayers());
+    dispatch(pushRoute('/'));
+  };
+};
+
 export const onSelectPlayer = playerId => {
   return dispatch => {
     dispatch(pushRoute(`/players/${playerId}`));

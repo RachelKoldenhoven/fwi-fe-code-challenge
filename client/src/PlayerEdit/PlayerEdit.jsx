@@ -4,6 +4,7 @@ import { push as pushRoute } from 'redux-first-routing';
 
 import { COUNTRIES } from '../constants';
 import { updatePlayer } from '../appState/actions';
+import { deletePlayer } from '../appState/actions';
 
 import './PlayerEdit.scss';
 
@@ -60,6 +61,10 @@ class PlayerEdit extends Component {
     this.props.updatePlayer(player);
   };
 
+  onDelete = player => {
+    this.props.deletePlayer(player);
+  };
+
   render() {
     return (
       <div className="player-edit">
@@ -87,10 +92,13 @@ class PlayerEdit extends Component {
           />
         </label>
         <button name="save" onClick={() => this.onSave(this.state)}>
-          Save Player
+          Save Changes
         </button>
         <button name="cancel" onClick={() => this.props.onCancel()}>
           Cancel
+        </button>
+        <button name="delete" onClick={() => this.onDelete(this.state)}>
+          Delete Player
         </button>
       </div>
     );
@@ -107,6 +115,7 @@ const mapDispatchToProps = dispatch => {
   return {
     updatePlayer: player => dispatch(updatePlayer(player)),
     onCancel: () => dispatch(pushRoute('/')),
+    deletePlayer: player => dispatch(deletePlayer(player)),
   };
 };
 
