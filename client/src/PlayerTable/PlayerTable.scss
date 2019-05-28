@@ -55,6 +55,17 @@ $header-height: 2.5rem;
 
   &__player {
     width: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &__add {
+      margin-left: 1rem;
+      font-weight: bold;
+      background-color: $metal;
+      border-radius: 12%;
+    }
   }
 
   &__winnings {

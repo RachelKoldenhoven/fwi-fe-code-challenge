@@ -5,7 +5,7 @@ import { connectAdvanced } from 'react-redux';
 import shallowEqual from 'shallowequal';
 
 import { COUNTRIES } from '../constants';
-import { fetchPlayersSuccess } from '../appState/actions';
+import { getPlayers } from '../appState/actions';
 
 import './PlayerTable.scss';
 import TableHeader from './TableHeader';
@@ -22,26 +22,11 @@ class PlayerTable extends PureComponent {
         imageUrl: PropTypes.string.isRequired,
       })
     ).isRequired,
-    fetchPlayersSuccess: PropTypes.func.isRequired,
+    getPlayers: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
-    const { fetchPlayersSuccess } = this.props;
-    fetch('http://localhost:3001/players', {
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        if (data) {
-          fetchPlayersSuccess(data);
-          return data;
-        }
-        throw new Error(data.message);
-      });
+    this.props.getPlayers();
   }
 
   render() {
@@ -62,7 +47,7 @@ class PlayerTable extends PureComponent {
 
 export default connectAdvanced(dispatch => {
   let result;
-  const actions = bindActionCreators({ fetchPlayersSuccess }, dispatch);
+  const actions = bindActionCreators({ getPlayers }, dispatch);
 
   return (state, props) => {
     const players = state.playerIds.map(id => state.players[id]);
