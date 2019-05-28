@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import { push as pushRoute } from 'redux-first-routing';
 
 import { COUNTRIES } from '../constants';
-import { savePlayer } from '../appState/actions';
+import { updatePlayer } from '../appState/actions';
 
-import './PlayerAdd.scss';
+import './PlayerEdit.scss';
 
-class PlayerAdd extends Component {
+class PlayerEdit extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       name: '',
-      country: 'NL',
+      country: '',
       winnings: 0,
     };
   }
@@ -30,6 +30,24 @@ class PlayerAdd extends Component {
     return options;
   }
 
+  async componentDidMount() {
+    const request = await fetch(
+      `http://localhost:3001/players/${this.selectedId}`,
+      {
+        headers: {
+          Accept: 'application/json',
+        },
+      }
+    );
+    const player = await request.json();
+    this.setState(player);
+  }
+
+  get selectedId() {
+    const playerId = this.props.url;
+    return playerId.substring(playerId.lastIndexOf('/') + 1);
+  }
+
   onChange = event => {
     const target = event.target;
     const value = target.value;
@@ -39,13 +57,13 @@ class PlayerAdd extends Component {
 
   onSave = player => {
     player.winnings = parseInt(player.winnings, 10);
-    this.props.savePlayer(player);
+    this.props.updatePlayer(player);
   };
 
   render() {
     return (
-      <div className="player-add">
-        <h3>Add a player</h3>
+      <div className="player-edit">
+        <h3>Edit this player</h3>
         <label>
           Player Name:
           <input onChange={this.onChange} name="name" value={this.state.name} />
@@ -79,14 +97,20 @@ class PlayerAdd extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    url: state.router.pathname,
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
-    savePlayer: player => dispatch(savePlayer(player)),
+    updatePlayer: player => dispatch(updatePlayer(player)),
     onCancel: () => dispatch(pushRoute('/')),
   };
 };
 
 export default connect(
-  undefined,
+  mapStateToProps,
   mapDispatchToProps
-)(PlayerAdd);
+)(PlayerEdit);

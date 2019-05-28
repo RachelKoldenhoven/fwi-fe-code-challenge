@@ -26,10 +26,29 @@ export const savePlayer = player => {
       body: JSON.stringify(player),
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json',
       },
     });
     dispatch(getPlayers());
     dispatch(pushRoute('/'));
+  };
+};
+
+export const updatePlayer = player => {
+  return async dispatch => {
+    await fetch(`http://localhost:3001/players/${player.id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(player),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    dispatch(getPlayers());
+    dispatch(pushRoute('/'));
+  };
+};
+
+export const onSelectPlayer = playerId => {
+  return dispatch => {
+    dispatch(pushRoute(`/players/${playerId}`));
   };
 };

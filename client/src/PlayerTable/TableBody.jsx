@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Flags from 'react-world-flags';
+import { connect } from 'react-redux';
 
 import Avatar from '../Avatar';
 import { COUNTRIES } from '../constants';
+import { onSelectPlayer } from '../appState/actions';
 
-const TableBody = ({ players }) => {
+const TableBody = ({ players, selectPlayer }) => {
   return (
     <table
       id="player-table-body"
@@ -18,7 +20,11 @@ const TableBody = ({ players }) => {
             <td role="gridcell" className="table__avatar">
               <Avatar src={imageUrl} />
             </td>
-            <td role="gridcell" className="table__player">
+            <td
+              role="gridcell"
+              className="table__player"
+              onClick={() => selectPlayer(id)}
+            >
               {name}
             </td>
             <td role="gridcell" className="table__winnings">
@@ -54,4 +60,13 @@ TableBody.propTypes = {
   ).isRequired,
 };
 
-export default TableBody;
+const mapDispatchToProps = dispatch => {
+  return {
+    selectPlayer: playerId => dispatch(onSelectPlayer(playerId)),
+  };
+};
+
+export default connect(
+  undefined,
+  mapDispatchToProps
+)(TableBody);
