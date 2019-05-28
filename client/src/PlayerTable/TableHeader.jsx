@@ -12,12 +12,13 @@ export class TableHeader extends Component {
       >
         <thead>
           <tr role="row">
-            <th role="columnheader" className="table__header table__avatar" />
-            <th role="columnheader" className="table__header table__player">
-              Player
+            <th role="columnheader" className="table__header table__avatar">
               <button className="table__player__add" onClick={this.props.onAdd}>
                 +
               </button>
+            </th>
+            <th role="columnheader" className="table__header table__player">
+              Player
             </th>
             <th role="columnheader" className="table__header table__winnings">
               Winnings
