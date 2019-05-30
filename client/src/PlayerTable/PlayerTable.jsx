@@ -26,7 +26,7 @@ class PlayerTable extends PureComponent {
   };
 
   componentDidMount() {
-    this.props.getPlayers();
+    this.props.getPlayers(0, 'name', 'asc');
   }
 
   render() {
