@@ -1,6 +1,6 @@
 import { push as pushRoute } from 'redux-first-routing';
 
-import { FETCH_PLAYERS_SUCCESS } from './constants';
+import { FETCH_PLAYERS_SUCCESS, TOGGLE_SORT } from './constants';
 
 export function fetchPlayersSuccess(data) {
   return { type: FETCH_PLAYERS_SUCCESS, payload: { data } };
@@ -60,5 +60,12 @@ export const deletePlayer = player => {
 export const onSelectPlayer = playerId => {
   return dispatch => {
     dispatch(pushRoute(`/players/${playerId}`));
+  };
+};
+
+export const toggleSort = col => {
+  return {
+    type: TOGGLE_SORT,
+    col,
   };
 };
