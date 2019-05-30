@@ -8,6 +8,7 @@ import { getPlayers } from '../appState/actions';
 import './PlayerTable.scss';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
+import TableFooter from './TableFooter';
 
 class PlayerTable extends PureComponent {
   static propTypes = {
@@ -56,6 +57,7 @@ class PlayerTable extends PureComponent {
       >
         <TableHeader />
         <TableBody players={players} />
+        <TableFooter />
       </div>
     );
   }
