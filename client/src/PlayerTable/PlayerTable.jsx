@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connectAdvanced } from 'react-redux';
-import shallowEqual from 'shallowequal';
+import { connect } from 'react-redux';
 
 import { COUNTRIES } from '../constants';
 import { getPlayers } from '../appState/actions';
@@ -26,7 +24,25 @@ class PlayerTable extends PureComponent {
   };
 
   componentDidMount() {
-    this.props.getPlayers();
+    this.props.getPlayers(
+      this.props.pagination.page,
+      this.props.pagination.col,
+      this.props.pagination.dir
+    );
+  }
+
+  componentWillReceiveProps(props) {
+    if (
+      props.pagination.page === this.props.pagination.page &&
+      props.pagination.col === this.props.pagination.col &&
+      props.pagination.dir === this.props.pagination.dir
+    )
+      return;
+    this.props.getPlayers(
+      props.pagination.page,
+      props.pagination.col,
+      props.pagination.dir
+    );
   }
 
   render() {
@@ -45,19 +61,20 @@ class PlayerTable extends PureComponent {
   }
 }
 
-export default connectAdvanced(dispatch => {
-  let result;
-  const actions = bindActionCreators({ getPlayers }, dispatch);
-
-  return (state, props) => {
-    const players = state.playerIds.map(id => state.players[id]);
-
-    const nextResult = { ...props, ...actions, players };
-
-    if (!shallowEqual(result, nextResult)) {
-      result = nextResult;
-    }
-
-    return result;
+const mapStateToProps = state => {
+  return {
+    players: state.players,
+    pagination: state.pagination,
   };
-})(PlayerTable);
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getPlayers: (page, col, dir) => dispatch(getPlayers(page, col, dir)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlayerTable);
