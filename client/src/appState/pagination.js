@@ -2,10 +2,7 @@ import { TOGGLE_SORT } from './constants';
 
 export default (state = { page: 0, col: 'name', dir: 'asc' }, action) => {
   if (action.type === TOGGLE_SORT) {
-    const newState = toggleSort(state, action.col);
-    console.log('state: ', state);
-    console.log('newState: ', newState);
-    return newState;
+    return toggleSort(state, action.col);
   }
   return state;
 };

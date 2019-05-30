@@ -24,7 +24,25 @@ class PlayerTable extends PureComponent {
   };
 
   componentDidMount() {
-    this.props.getPlayers(0, 'name', 'asc');
+    this.props.getPlayers(
+      this.props.pagination.page,
+      this.props.pagination.col,
+      this.props.pagination.dir
+    );
+  }
+
+  componentWillReceiveProps(props) {
+    if (
+      props.pagination.page === this.props.pagination.page &&
+      props.pagination.col === this.props.pagination.col &&
+      props.pagination.dir === this.props.pagination.dir
+    )
+      return;
+    this.props.getPlayers(
+      props.pagination.page,
+      props.pagination.col,
+      props.pagination.dir
+    );
   }
 
   render() {
