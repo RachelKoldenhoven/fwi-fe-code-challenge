@@ -73,9 +73,9 @@ export const toggleSort = col => {
 };
 
 export const onChangePage = (currPage, offset, pageTotal) => {
-  let page = currPage;
-  let newPage = currPage + offset;
-  if (newPage >= 1 && newPage <= pageTotal) page = newPage;
+  const newPage = currPage + offset;
+  const valid = newPage >= 1 && newPage <= pageTotal;
+  const page = valid ? newPage : currPage;
   return {
     type: CHANGE_PAGE,
     page,

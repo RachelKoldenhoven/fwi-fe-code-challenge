@@ -46,6 +46,13 @@ $header-height: 2.5rem;
     height: $header-height;
     text-align: left;
     vertical-align: middle;
+
+    &.table__winnings,
+    &.table__native {
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 
   &__footer {
@@ -86,18 +93,10 @@ $header-height: 2.5rem;
     padding-right: 1.5rem;
     text-align: right;
     width: 8rem;
-
-    &:hover {
-      cursor: pointer;
-    }
   }
 
   &__native {
     width: 6rem;
-
-    &:hover {
-      cursor: pointer;
-    }
   }
 }
 
