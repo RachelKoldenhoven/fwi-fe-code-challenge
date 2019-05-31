@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push as pushRoute } from 'redux-first-routing';
 
@@ -78,6 +79,11 @@ class PlayerAdd extends Component {
     );
   }
 }
+
+PlayerAdd.propTypes = {
+  savePlayer: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = dispatch => {
   return {

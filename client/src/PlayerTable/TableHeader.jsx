@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'redux-first-routing';
 
@@ -46,6 +47,11 @@ export class TableHeader extends Component {
     );
   }
 }
+
+TableHeader.propTypes = {
+  onAdd: PropTypes.func.isRequired,
+  toggleSort: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = dispatch => {
   return {

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { onChangePage } from '../appState/actions';
 
-class TableFooter extends Component {
+export class TableFooter extends Component {
   render() {
     return (
       <table
@@ -32,6 +33,11 @@ class TableFooter extends Component {
     );
   }
 }
+
+TableFooter.propTypes = {
+  page: PropTypes.number.isRequired,
+  changePage: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => {
   return {

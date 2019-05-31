@@ -58,6 +58,7 @@ TableBody.propTypes = {
       imageUrl: PropTypes.string.isRequired,
     })
   ).isRequired,
+  selectPlayer: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => {

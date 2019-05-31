@@ -22,6 +22,11 @@ class PlayerTable extends PureComponent {
       })
     ).isRequired,
     getPlayers: PropTypes.func.isRequired,
+    pagination: PropTypes.shape({
+      page: PropTypes.number.isRequired,
+      col: PropTypes.string.isRequired,
+      dir: PropTypes.string.isRequired,
+    }).isRequired,
   };
 
   componentDidMount() {

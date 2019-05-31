@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push as pushRoute } from 'redux-first-routing';
 
@@ -8,7 +9,7 @@ import { deletePlayer } from '../appState/actions';
 
 import './PlayerEdit.scss';
 
-class PlayerEdit extends Component {
+export class PlayerEdit extends Component {
   constructor(props) {
     super(props);
 
@@ -112,6 +113,13 @@ class PlayerEdit extends Component {
     );
   }
 }
+
+PlayerEdit.propTypes = {
+  updatePlayer: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  deletePlayer: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = state => {
   return {
