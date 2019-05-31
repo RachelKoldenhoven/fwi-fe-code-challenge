@@ -19,7 +19,7 @@ export class TableFooter extends Component {
         <tfoot>
           <tr>
             <td
-              className="table__footer"
+              className="table__footer table__page"
               onClick={() => {
                 this.props.changePage(this.props.page, -1, this.pageTotal);
               }}
@@ -30,7 +30,7 @@ export class TableFooter extends Component {
               {this.props.page} / {this.pageTotal}
             </td>
             <td
-              className="table__footer"
+              className="table__footer table__page"
               onClick={() => {
                 this.props.changePage(this.props.page, 1, this.pageTotal);
               }}

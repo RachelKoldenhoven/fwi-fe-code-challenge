@@ -52,6 +52,12 @@ $header-height: 2.5rem;
     text-align: center;
   }
 
+  &__page {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   &__avatar {
     text-align: center;
     width: 4rem;
@@ -69,6 +75,10 @@ $header-height: 2.5rem;
       font-weight: bold;
       background-color: $metal;
       border-radius: 12%;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
@@ -76,10 +86,18 @@ $header-height: 2.5rem;
     padding-right: 1.5rem;
     text-align: right;
     width: 8rem;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &__native {
     width: 6rem;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
