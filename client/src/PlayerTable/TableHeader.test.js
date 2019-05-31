@@ -7,7 +7,8 @@ import { TableHeader } from './TableHeader';
 describe('TableHeader', () => {
   it('should have an Add Player button', () => {
     // Setup
-    const thWrapper = shallow(<TableHeader />);
+    const noop = () => {};
+    const thWrapper = shallow(<TableHeader onAdd={noop} toggleSort={noop} />);
     const addPlayerBtn = thWrapper.find('.table__player__add');
 
     // Exercise
@@ -18,8 +19,9 @@ describe('TableHeader', () => {
 
   it('should call onAdd when btn is clicked', () => {
     // Setup
+    const noop = () => {};
     const onAdd = sinon.spy();
-    const thWrapper = shallow(<TableHeader onAdd={onAdd} />);
+    const thWrapper = shallow(<TableHeader onAdd={onAdd} toggleSort={noop} />);
     const addPlayerBtn = thWrapper.find('.table__player__add');
 
     // Exercise

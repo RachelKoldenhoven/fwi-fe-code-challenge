@@ -14,6 +14,9 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^1.16.4"
   },
+  "resolutions": {
+    "history": "4.7.2"
+  },
   "engines": {
     "node": ">=8.10.0"
   },
