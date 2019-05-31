@@ -70,7 +70,7 @@ class PlayerTable extends PureComponent {
 
 const mapStateToProps = state => {
   return {
-    players: state.players,
+    players: state.players.players,
     pagination: state.pagination,
   };
 };

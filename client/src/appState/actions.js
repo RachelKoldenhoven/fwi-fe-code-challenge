@@ -7,7 +7,7 @@ export function fetchPlayersSuccess(data) {
 }
 
 export const getPlayers = (page, col, dir) => {
-  const url = `http://localhost:3001/players?from=${page *
+  const url = `http://localhost:3001/players?from=${(page - 1) *
     25}&sortBy=${col}&sortOrder=${dir}`;
   return async dispatch => {
     const request = await fetch(url, {
@@ -72,9 +72,12 @@ export const toggleSort = col => {
   };
 };
 
-export const onChangePage = val => {
+export const onChangePage = (currPage, offset, pageTotal) => {
+  let page = currPage;
+  let newPage = currPage + offset;
+  if (newPage >= 1 && newPage <= pageTotal) page = newPage;
   return {
     type: CHANGE_PAGE,
-    val,
+    page,
   };
 };

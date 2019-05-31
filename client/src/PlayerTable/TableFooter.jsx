@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
 import { onChangePage } from '../appState/actions';
 
 export class TableFooter extends Component {
+  get pageTotal() {
+    return Math.ceil(this.props.total / 25);
+  }
+
   render() {
     return (
       <table
@@ -16,14 +20,20 @@ export class TableFooter extends Component {
           <tr>
             <td
               className="table__footer"
-              onClick={() => this.props.changePage(-1)}
+              onClick={() => {
+                this.props.changePage(this.props.page, -1, this.pageTotal);
+              }}
             >
               ◀
             </td>
-            <td className="table__footer">{this.props.page}</td>
+            <td className="table__footer">
+              {this.props.page} / {this.pageTotal}
+            </td>
             <td
               className="table__footer"
-              onClick={() => this.props.changePage(1)}
+              onClick={() => {
+                this.props.changePage(this.props.page, 1, this.pageTotal);
+              }}
             >
               ▶
             </td>
@@ -36,18 +46,22 @@ export class TableFooter extends Component {
 
 TableFooter.propTypes = {
   page: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
   changePage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
     page: state.pagination.page,
+    total: state.players.total,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    changePage: val => dispatch(onChangePage(val)),
+    changePage: (currPage, offset, pageTotal) => {
+      dispatch(onChangePage(currPage, offset, pageTotal));
+    },
   };
 };
 
