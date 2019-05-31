@@ -77,38 +77,44 @@ export class PlayerEdit extends Component {
     }
     return (
       <div className="player-edit">
-        <h3>Edit this player</h3>
-        <label>
-          Player Name:
-          <input onChange={this.onChange} name="name" value={this.state.name} />
-        </label>
-        <label>
-          Country:
-          <select
-            onChange={this.onChange}
-            name="country"
-            value={this.state.country}
-          >
-            {this.options}
-          </select>
-        </label>
-        <label>
-          Winnings:
-          <input
-            onChange={this.onChange}
-            name="winnings"
-            value={this.state.winnings}
-          />
-        </label>
-        <button name="save" onClick={() => this.onSave(this.state)}>
-          Save Changes
-        </button>
-        <button name="cancel" onClick={() => this.props.onCancel()}>
-          Cancel
-        </button>
-        <button name="delete" onClick={() => this.onDelete(this.state)}>
-          Delete Player
-        </button>
+        <div className="container">
+          <h3>Edit this player</h3>
+          <label>
+            Player Name:
+            <input
+              onChange={this.onChange}
+              name="name"
+              value={this.state.name}
+            />
+          </label>
+          <label>
+            Country:
+            <select
+              onChange={this.onChange}
+              name="country"
+              value={this.state.country}
+            >
+              {this.options}
+            </select>
+          </label>
+          <label>
+            Winnings:
+            <input
+              onChange={this.onChange}
+              name="winnings"
+              value={this.state.winnings}
+            />
+          </label>
+          <button name="save" onClick={() => this.onSave(this.state)}>
+            Save Changes
+          </button>
+          <button name="cancel" onClick={() => this.props.onCancel()}>
+            Cancel
+          </button>
+          <button name="delete" onClick={() => this.onDelete(this.state)}>
+            Delete Player
+          </button>
+        </div>
       </div>
     );
   }

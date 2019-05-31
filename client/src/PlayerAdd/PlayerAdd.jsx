@@ -46,35 +46,41 @@ class PlayerAdd extends Component {
   render() {
     return (
       <div className="player-add">
-        <h3>Add a player</h3>
-        <label>
-          Player Name:
-          <input onChange={this.onChange} name="name" value={this.state.name} />
-        </label>
-        <label>
-          Country:
-          <select
-            onChange={this.onChange}
-            name="country"
-            value={this.state.country}
-          >
-            {this.options}
-          </select>
-        </label>
-        <label>
-          Winnings:
-          <input
-            onChange={this.onChange}
-            name="winnings"
-            value={this.state.winnings}
-          />
-        </label>
-        <button name="save" onClick={() => this.onSave(this.state)}>
-          Save Player
-        </button>
-        <button name="cancel" onClick={() => this.props.onCancel()}>
-          Cancel
-        </button>
+        <div className="container">
+          <h3>Add a player</h3>
+          <label>
+            Player Name:
+            <input
+              onChange={this.onChange}
+              name="name"
+              value={this.state.name}
+            />
+          </label>
+          <label>
+            Country:
+            <select
+              onChange={this.onChange}
+              name="country"
+              value={this.state.country}
+            >
+              {this.options}
+            </select>
+          </label>
+          <label>
+            Winnings:
+            <input
+              onChange={this.onChange}
+              name="winnings"
+              value={this.state.winnings}
+            />
+          </label>
+          <button name="save" onClick={() => this.onSave(this.state)}>
+            Save Player
+          </button>
+          <button name="cancel" onClick={() => this.props.onCancel()}>
+            Cancel
+          </button>
+        </div>
       </div>
     );
   }
